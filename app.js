@@ -91,6 +91,14 @@ function addTeams(){
 
 addTeams()
 
+// function htmlTemplate()
+
+function playersHtml(players){
+  return players.map(function(players){
+    return `<tr><td>${players.name}</td><td>${players.hometown}</td><td>${players.points}</td><td>${players.dob}</td></tr>`
+  }).join(' ')
+}
+
 
 function render(html, into){
   $(into).empty()
@@ -103,5 +111,7 @@ $(function() { // on document ready
     console.log(this.innerHTML)
     let foundTeam = team.findTeam(this.innerHTML)
     let topThreePlayersOnTeamArray = foundTeam.top3()
+    let htmlDisplay = playersHtml(topThreePlayersOnTeamArray)
+    render(htmlDisplay, 'tbody:eq(1)')
   })
 })
